@@ -3,34 +3,63 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_all"
+            android:title="Все новости" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_politics"
+            android:title="Новости Политики" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_world"
+            android:title="Мировые новости" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_society"
+            android:title="Новости общества" />
+        <item
+            android:id="@+id/nav_economics"
+            android:title="Новости экономики" />
+        <item
+            android:id="@+id/nav_sports"
+            android:title="Новости спорта" />
+        <item
+            android:id="@+id/nav_accidents"
+            android:title="Проишествия" />
+        <item
+            android:id="@+id/nav_culture"
+            android:title="Новости культуры" />
+        <item
+            android:id="@+id/nav_science"
+            android:title="Новости науки" />
+        <item
+            android:id="@+id/nav_health"
+            android:title="Новости здоровья" />
+        <item
+            android:id="@+id/nav_technology"
+            android:title="Новости высоких технологий" />
+        <item
+            android:id="@+id/nav_internet"
+            android:title="Новости интернета" />
+        <item
+            android:id="@+id/nav_auto"
+            android:title="Новости авто" />
+        <item
+            android:id="@+id/nav_tourizm"
+            android:title="Новости туризма" />
+        <item
+            android:id="@+id/nav_kazakh"
+            android:title="Соңғы жаңалықтар қазақша" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+    <!--<item android:title="Communicate">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="Share" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_send"-->
+                <!--android:icon="@drawable/ic_menu_send"-->
+                <!--android:title="Send" />-->
+        <!--</menu>-->
+    <!--</item>-->
 
 </menu>
