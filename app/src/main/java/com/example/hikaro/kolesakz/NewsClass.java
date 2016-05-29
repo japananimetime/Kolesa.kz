@@ -50,6 +50,6 @@ public class NewsClass {
         return title + '\n' +
                 date + '\n' +
                 description + '\n' +
-                ", Источник= '" + source;
+                "Источник: '" + source;
     }
 }

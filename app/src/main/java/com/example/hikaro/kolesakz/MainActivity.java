@@ -22,30 +22,30 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    ListView listView;
+
+    private ArrayAdapter<String> mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (android.os.Build.VERSION.SDK_INT > 9)
-        {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        ListView listView = (ListView)findViewById(R.id.listView);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-//                android.R.layout.activity_list_item, newsAsStrings);
-
-//        listView.setAdapter(adapter);
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        JsonGet newsRequest = new JsonGet();
+        ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromAll();
+        String [] newsAsStrings;
+        newsAsStrings = new String[news.size()];
+        for(int i=0; i<news.size(); i++){
+            newsAsStrings[i]=news.get(i).toString();
+        }
+        listView = (ListView) findViewById(R.id.listView_main);
+        mAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, newsAsStrings);
+        listView.setAdapter(mAdapter);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -96,7 +96,8 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here
         int id = item.getItemId();
         if (id == R.id.nav_all) {
-
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_politics) {
             Intent intent = new Intent(MainActivity.this, Politics.class);
             startActivity(intent);
@@ -104,41 +105,41 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, World.class);
             startActivity(intent);
         } else if (id == R.id.nav_society) {
-            JsonGet newsRequest = new JsonGet();
-            ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromSociety();
+            Intent intent = new Intent(MainActivity.this,Society.class);
+            startActivity(intent);
         } else if (id == R.id.nav_economics) {
-            JsonGet newsRequest = new JsonGet();
-            ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromEconomics();
+            Intent intent = new Intent(MainActivity.this,Economics.class);
+            startActivity(intent);
         } else if (id == R.id.nav_sports) {
-            JsonGet newsRequest = new JsonGet();
-            ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromSports();
-        } else if (id==R.id.nav_accidents){
-            JsonGet newsRequest = new JsonGet();
-            ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromAccidents();
-        } else if (id==R.id.nav_culture){
-            JsonGet newsRequest = new JsonGet();
-            ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromCulture();
-        } else if (id==R.id.nav_science){
-            JsonGet newsRequest = new JsonGet();
-            ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromScience();
-        } else if (id==R.id.nav_health){
-            JsonGet newsRequest = new JsonGet();
-            ArrayList<NewsClass> news =newsRequest.getTwentyNewsfromHealth();
-        } else if (id==R.id.nav_technology){
-            JsonGet newsRequest = new JsonGet();
-            ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromTechnology();
-        } else if (id==R.id.nav_internet){
-            JsonGet newsRequest = new JsonGet();
-            ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromInternet();
-        } else if (id==R.id.nav_auto){
-            JsonGet newsRequest = new JsonGet();
-            ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromAuto();
-        } else if (id==R.id.nav_tourizm){
-            JsonGet newsRequest = new JsonGet();
-            ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromTourism();
-        } else if (id==R.id.nav_kazakh){
-            JsonGet newsRequest = new JsonGet();
-            ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromKazakh();
+            Intent intent = new Intent(MainActivity.this,Sports.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_accidents) {
+            Intent intent = new Intent(MainActivity.this,Accidents.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_culture) {
+            Intent intent = new Intent(MainActivity.this,Culture.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_science) {
+            Intent intent = new Intent(MainActivity.this,Science.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_health) {
+            Intent intent = new Intent(MainActivity.this,Health.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_technology) {
+            Intent intent = new Intent(MainActivity.this,Technology.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_internet) {
+            Intent intent = new Intent(MainActivity.this,Internet.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_auto) {
+            Intent intent = new Intent(MainActivity.this,Auto.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_tourizm) {
+            Intent intent = new Intent(MainActivity.this,Tourism.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_kazakh) {
+            Intent intent = new Intent(MainActivity.this,Kazakh.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
