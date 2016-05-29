@@ -52,6 +52,6 @@ public class NewsClass {
         return "<p><b>"+title + "</b></p>"+'\n' +
                 "<p>"+dateFormatted + "</p>"+'\n' +
                 description + '\n' +
-                "Источник: '" + source;
+                "<p>Источник: " + source+"</p>";
     }
 }

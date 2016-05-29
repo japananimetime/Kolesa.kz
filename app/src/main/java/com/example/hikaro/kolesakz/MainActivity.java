@@ -1,6 +1,10 @@
 package com.example.hikaro.kolesakz;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.NavigationView;
@@ -13,8 +17,12 @@ import android.text.Html;
 import android.text.Spanned;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -34,6 +42,12 @@ public class MainActivity extends AppCompatActivity
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if(isOnline(getApplicationContext())){
+
+        }
+        else{
+            Toast.makeText(this, "Устройство оффлайн", Toast.LENGTH_SHORT).show();
+        }
         JsonGet newsRequest = new JsonGet();
         ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromAll();
         listView = (ListView) findViewById(R.id.listView_main);
@@ -45,8 +59,18 @@ public class MainActivity extends AppCompatActivity
                 R.layout.list_item, taggedNews);
 
         listView.setAdapter(mAdapter);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
+                                    long id) {
+                String nonFixedLink= ((TextView) itemClicked).getText().toString();
+                int index=nonFixedLink.lastIndexOf("http");
+                String fixedLink=nonFixedLink.substring(index);
+                Uri address = Uri.parse(fixedLink);
+                Intent openLinkIntent = new Intent(Intent.ACTION_VIEW, address);
+                startActivity(openLinkIntent);
+            }
+        });        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -144,5 +168,16 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public static boolean isOnline(Context context)
+    {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting())
+        {
+            return true;
+        }
+        return false;
     }
 }
