@@ -1,7 +1,7 @@
 package com.example.hikaro.kolesakz;
 
-import android.text.Html;
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -47,8 +47,10 @@ public class NewsClass {
 
     @Override
     public String toString() {
-        return title + '\n' +
-                date + '\n' +
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String dateFormatted=dateFormat.format(date);
+        return "<p><b>"+title + "</b></p>"+'\n' +
+                "<p>"+dateFormatted + "</p>"+'\n' +
                 description + '\n' +
                 "Источник: '" + source;
     }

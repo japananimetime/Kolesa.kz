@@ -3,20 +3,18 @@ package com.example.hikaro.kolesakz;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,7 +22,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ListView listView;
 
-    private ArrayAdapter<String> mAdapter;
+    private ArrayAdapter<Spanned> mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +36,14 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         JsonGet newsRequest = new JsonGet();
         ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromAll();
-        String [] newsAsStrings;
-        newsAsStrings = new String[news.size()];
-        for(int i=0; i<news.size(); i++){
-            newsAsStrings[i]=news.get(i).toString();
-        }
         listView = (ListView) findViewById(R.id.listView_main);
+        Spanned[] taggedNews = new Spanned[news.size()];
+        for(int i = 0 ; i < news.size(); i++) {
+            taggedNews[i] = Html.fromHtml(news.get(i).toString());
+        }
         mAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, newsAsStrings);
+                R.layout.list_item, taggedNews);
+
         listView.setAdapter(mAdapter);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -105,40 +104,40 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, World.class);
             startActivity(intent);
         } else if (id == R.id.nav_society) {
-            Intent intent = new Intent(MainActivity.this,Society.class);
+            Intent intent = new Intent(MainActivity.this, Society.class);
             startActivity(intent);
         } else if (id == R.id.nav_economics) {
-            Intent intent = new Intent(MainActivity.this,Economics.class);
+            Intent intent = new Intent(MainActivity.this, Economics.class);
             startActivity(intent);
         } else if (id == R.id.nav_sports) {
-            Intent intent = new Intent(MainActivity.this,Sports.class);
+            Intent intent = new Intent(MainActivity.this, Sports.class);
             startActivity(intent);
         } else if (id == R.id.nav_accidents) {
-            Intent intent = new Intent(MainActivity.this,Accidents.class);
+            Intent intent = new Intent(MainActivity.this, Accidents.class);
             startActivity(intent);
         } else if (id == R.id.nav_culture) {
-            Intent intent = new Intent(MainActivity.this,Culture.class);
+            Intent intent = new Intent(MainActivity.this, Culture.class);
             startActivity(intent);
         } else if (id == R.id.nav_science) {
-            Intent intent = new Intent(MainActivity.this,Science.class);
+            Intent intent = new Intent(MainActivity.this, Science.class);
             startActivity(intent);
         } else if (id == R.id.nav_health) {
-            Intent intent = new Intent(MainActivity.this,Health.class);
+            Intent intent = new Intent(MainActivity.this, Health.class);
             startActivity(intent);
         } else if (id == R.id.nav_technology) {
-            Intent intent = new Intent(MainActivity.this,Technology.class);
+            Intent intent = new Intent(MainActivity.this, Technology.class);
             startActivity(intent);
         } else if (id == R.id.nav_internet) {
-            Intent intent = new Intent(MainActivity.this,Internet.class);
+            Intent intent = new Intent(MainActivity.this, Internet.class);
             startActivity(intent);
         } else if (id == R.id.nav_auto) {
-            Intent intent = new Intent(MainActivity.this,Auto.class);
+            Intent intent = new Intent(MainActivity.this, Auto.class);
             startActivity(intent);
         } else if (id == R.id.nav_tourizm) {
-            Intent intent = new Intent(MainActivity.this,Tourism.class);
+            Intent intent = new Intent(MainActivity.this, Tourism.class);
             startActivity(intent);
         } else if (id == R.id.nav_kazakh) {
-            Intent intent = new Intent(MainActivity.this,Kazakh.class);
+            Intent intent = new Intent(MainActivity.this, Kazakh.class);
             startActivity(intent);
         }
 

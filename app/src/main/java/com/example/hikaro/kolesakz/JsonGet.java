@@ -1,8 +1,5 @@
 package com.example.hikaro.kolesakz;
 
-import android.app.Activity;
-import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,7 +20,7 @@ import java.util.Date;
  */
 public class JsonGet {
     public String requestGET(String link) {
-        String result="";
+        String result = "";
         try {
             URL url = new URL(link);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -32,76 +29,75 @@ public class JsonGet {
 
             conn.connect();
 
-            int code=conn.getResponseCode();
+            int code = conn.getResponseCode();
 
-            if (code==200) {
+            if (code == 200) {
                 BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
                 String inputLine;
 
                 while ((inputLine = in.readLine()) != null) {
-                    result+=inputLine;
+                    result += inputLine;
                 }
 
                 in.close();
-            }
-            else{
+            } else {
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             }
 
             conn.disconnect();
-            conn=null;
+            conn = null;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
     }
-    ArrayList<NewsClass> getTwentyNewsfromAll(){
+
+    ArrayList<NewsClass> getTwentyNewsfromAll() {
         ArrayList<NewsClass> NewsArray = new ArrayList<NewsClass>();
-        String link ="https://api.i-news.kz/news/search?query[range]=0&group_by=date&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
+        String link = "https://api.i-news.kz/news/search?query[range]=0&group_by=date&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
         String json = requestGET(link);
         try {
             JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray news = object.getJSONArray("news");
-            for(int i=19; i>=0; i--){
-                NewsClass oneFromTwenty=new NewsClass();
+            for (int i = 19; i >= 0; i--) {
+                NewsClass oneFromTwenty = new NewsClass();
                 JSONObject oneFromNews = news.getJSONObject(i);
                 oneFromTwenty.setTitle(oneFromNews.getString("title"));
                 oneFromTwenty.setDescription(oneFromNews.getString("description"));
                 oneFromTwenty.setSource(oneFromNews.getString("url"));
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ssz");
-                Date date =  df.parse(oneFromNews.getString("date"));
+                Date date = df.parse(oneFromNews.getString("date"));
                 oneFromTwenty.setDate(date);
                 NewsArray.add(oneFromTwenty);
             }
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return NewsArray;
     }
-    ArrayList<NewsClass> getTwentyNewsfromPolitics(){
+
+    ArrayList<NewsClass> getTwentyNewsfromPolitics() {
         ArrayList<NewsClass> NewsArray = new ArrayList<NewsClass>();
-        String link ="https://api.i-news.kz/news/search?query[cat_id]=1&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
+        String link = "https://api.i-news.kz/news/search?query[cat_id]=1&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
         String json = requestGET(link);
         try {
             JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray news = object.getJSONArray("news");
-            for(int i=19; i>=0; i--){
-                NewsClass oneFromTwenty=new NewsClass();
+            for (int i = 19; i >= 0; i--) {
+                NewsClass oneFromTwenty = new NewsClass();
                 JSONObject oneFromNews = news.getJSONObject(i);
                 oneFromTwenty.setTitle(oneFromNews.getString("title"));
                 oneFromTwenty.setDescription(oneFromNews.getString("description"));
                 oneFromTwenty.setSource(oneFromNews.getString("url"));
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ssz");
-                Date date =  df.parse(oneFromNews.getString("date"));
+                Date date = df.parse(oneFromNews.getString("date"));
                 oneFromTwenty.setDate(date);
                 NewsArray.add(oneFromTwenty);
             }
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -110,338 +106,337 @@ public class JsonGet {
     }
 
 
-    ArrayList<NewsClass> getTwentyNewsfromWorld(){
+    ArrayList<NewsClass> getTwentyNewsfromWorld() {
         ArrayList<NewsClass> NewsArray = new ArrayList<NewsClass>();
-        String link ="https://api.i-news.kz/news/search?query[cat_id]=2&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
+        String link = "https://api.i-news.kz/news/search?query[cat_id]=2&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
         String json = requestGET(link);
         try {
             JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray news = object.getJSONArray("news");
-            for(int i=19; i>=0; i--){
-                NewsClass oneFromTwenty=new NewsClass();
+            for (int i = 19; i >= 0; i--) {
+                NewsClass oneFromTwenty = new NewsClass();
                 JSONObject oneFromNews = news.getJSONObject(i);
                 oneFromTwenty.setTitle(oneFromNews.getString("title"));
                 oneFromTwenty.setDescription(oneFromNews.getString("description"));
                 oneFromTwenty.setSource(oneFromNews.getString("url"));
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ssz");
-                Date date =  df.parse(oneFromNews.getString("date"));
+                Date date = df.parse(oneFromNews.getString("date"));
                 oneFromTwenty.setDate(date);
                 NewsArray.add(oneFromTwenty);
             }
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return NewsArray;
     }
-    ArrayList<NewsClass> getTwentyNewsfromSociety(){
+
+    ArrayList<NewsClass> getTwentyNewsfromSociety() {
         ArrayList<NewsClass> NewsArray = new ArrayList<NewsClass>();
-        String link ="https://api.i-news.kz/news/search?query[cat_id]=3&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
+        String link = "https://api.i-news.kz/news/search?query[cat_id]=3&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
         String json = requestGET(link);
         try {
             JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray news = object.getJSONArray("news");
-            for(int i=19; i>=0; i--){
-                NewsClass oneFromTwenty=new NewsClass();
+            for (int i = 19; i >= 0; i--) {
+                NewsClass oneFromTwenty = new NewsClass();
                 JSONObject oneFromNews = news.getJSONObject(i);
                 oneFromTwenty.setTitle(oneFromNews.getString("title"));
                 oneFromTwenty.setDescription(oneFromNews.getString("description"));
                 oneFromTwenty.setSource(oneFromNews.getString("url"));
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ssz");
-                Date date =  df.parse(oneFromNews.getString("date"));
+                Date date = df.parse(oneFromNews.getString("date"));
                 oneFromTwenty.setDate(date);
                 NewsArray.add(oneFromTwenty);
             }
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return NewsArray;
     }
-    ArrayList<NewsClass> getTwentyNewsfromEconomics(){
+
+    ArrayList<NewsClass> getTwentyNewsfromEconomics() {
         ArrayList<NewsClass> NewsArray = new ArrayList<NewsClass>();
-        String link ="https://api.i-news.kz/news/search?query[cat_id]=4&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
+        String link = "https://api.i-news.kz/news/search?query[cat_id]=4&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
         String json = requestGET(link);
         try {
             JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray news = object.getJSONArray("news");
-            for(int i=19; i>=0; i--){
-                NewsClass oneFromTwenty=new NewsClass();
+            for (int i = 19; i >= 0; i--) {
+                NewsClass oneFromTwenty = new NewsClass();
                 JSONObject oneFromNews = news.getJSONObject(i);
                 oneFromTwenty.setTitle(oneFromNews.getString("title"));
                 oneFromTwenty.setDescription(oneFromNews.getString("description"));
                 oneFromTwenty.setSource(oneFromNews.getString("url"));
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ssz");
-                Date date =  df.parse(oneFromNews.getString("date"));
+                Date date = df.parse(oneFromNews.getString("date"));
                 oneFromTwenty.setDate(date);
                 NewsArray.add(oneFromTwenty);
             }
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return NewsArray;
     }
-    ArrayList<NewsClass> getTwentyNewsfromSports(){
+
+    ArrayList<NewsClass> getTwentyNewsfromSports() {
         ArrayList<NewsClass> NewsArray = new ArrayList<NewsClass>();
-        String link ="https://api.i-news.kz/news/search?query[cat_id]=5&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
+        String link = "https://api.i-news.kz/news/search?query[cat_id]=5&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
         String json = requestGET(link);
         try {
             JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray news = object.getJSONArray("news");
-            for(int i=19; i>=0; i--){
-                NewsClass oneFromTwenty=new NewsClass();
+            for (int i = 19; i >= 0; i--) {
+                NewsClass oneFromTwenty = new NewsClass();
                 JSONObject oneFromNews = news.getJSONObject(i);
                 oneFromTwenty.setTitle(oneFromNews.getString("title"));
                 oneFromTwenty.setDescription(oneFromNews.getString("description"));
                 oneFromTwenty.setSource(oneFromNews.getString("url"));
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ssz");
-                Date date =  df.parse(oneFromNews.getString("date"));
+                Date date = df.parse(oneFromNews.getString("date"));
                 oneFromTwenty.setDate(date);
                 NewsArray.add(oneFromTwenty);
             }
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return NewsArray;
     }
-    ArrayList<NewsClass> getTwentyNewsfromAccidents(){
+
+    ArrayList<NewsClass> getTwentyNewsfromAccidents() {
         ArrayList<NewsClass> NewsArray = new ArrayList<NewsClass>();
-        String link ="https://api.i-news.kz/news/search?query[cat_id]=6&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
+        String link = "https://api.i-news.kz/news/search?query[cat_id]=6&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
         String json = requestGET(link);
         try {
             JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray news = object.getJSONArray("news");
-            for(int i=19; i>=0; i--){
-                NewsClass oneFromTwenty=new NewsClass();
+            for (int i = 19; i >= 0; i--) {
+                NewsClass oneFromTwenty = new NewsClass();
                 JSONObject oneFromNews = news.getJSONObject(i);
                 oneFromTwenty.setTitle(oneFromNews.getString("title"));
                 oneFromTwenty.setDescription(oneFromNews.getString("description"));
                 oneFromTwenty.setSource(oneFromNews.getString("url"));
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ssz");
-                Date date =  df.parse(oneFromNews.getString("date"));
+                Date date = df.parse(oneFromNews.getString("date"));
                 oneFromTwenty.setDate(date);
                 NewsArray.add(oneFromTwenty);
             }
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return NewsArray;
     }
-    ArrayList<NewsClass> getTwentyNewsfromCulture(){
+
+    ArrayList<NewsClass> getTwentyNewsfromCulture() {
         ArrayList<NewsClass> NewsArray = new ArrayList<NewsClass>();
-        String link ="https://api.i-news.kz/news/search?query[cat_id]=7&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
+        String link = "https://api.i-news.kz/news/search?query[cat_id]=7&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
         String json = requestGET(link);
         try {
             JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray news = object.getJSONArray("news");
-            for(int i=19; i>=0; i--){
-                NewsClass oneFromTwenty=new NewsClass();
+            for (int i = 19; i >= 0; i--) {
+                NewsClass oneFromTwenty = new NewsClass();
                 JSONObject oneFromNews = news.getJSONObject(i);
                 oneFromTwenty.setTitle(oneFromNews.getString("title"));
                 oneFromTwenty.setDescription(oneFromNews.getString("description"));
                 oneFromTwenty.setSource(oneFromNews.getString("url"));
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ssz");
-                Date date =  df.parse(oneFromNews.getString("date"));
+                Date date = df.parse(oneFromNews.getString("date"));
                 oneFromTwenty.setDate(date);
                 NewsArray.add(oneFromTwenty);
             }
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return NewsArray;
     }
-    ArrayList<NewsClass> getTwentyNewsfromScience(){
+
+    ArrayList<NewsClass> getTwentyNewsfromScience() {
         ArrayList<NewsClass> NewsArray = new ArrayList<NewsClass>();
-        String link ="https://api.i-news.kz/news/search?query[cat_id]=8&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
+        String link = "https://api.i-news.kz/news/search?query[cat_id]=8&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
         String json = requestGET(link);
         try {
             JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray news = object.getJSONArray("news");
-            for(int i=19; i>=0; i--){
-                NewsClass oneFromTwenty=new NewsClass();
+            for (int i = 19; i >= 0; i--) {
+                NewsClass oneFromTwenty = new NewsClass();
                 JSONObject oneFromNews = news.getJSONObject(i);
                 oneFromTwenty.setTitle(oneFromNews.getString("title"));
                 oneFromTwenty.setDescription(oneFromNews.getString("description"));
                 oneFromTwenty.setSource(oneFromNews.getString("url"));
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ssz");
-                Date date =  df.parse(oneFromNews.getString("date"));
+                Date date = df.parse(oneFromNews.getString("date"));
                 oneFromTwenty.setDate(date);
                 NewsArray.add(oneFromTwenty);
             }
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return NewsArray;
     }
-    ArrayList<NewsClass> getTwentyNewsfromHealth(){
+
+    ArrayList<NewsClass> getTwentyNewsfromHealth() {
         ArrayList<NewsClass> NewsArray = new ArrayList<NewsClass>();
-        String link ="https://api.i-news.kz/news/search?query[cat_id]=9&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
+        String link = "https://api.i-news.kz/news/search?query[cat_id]=9&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
         String json = requestGET(link);
         try {
             JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray news = object.getJSONArray("news");
-            for(int i=19; i>=0; i--){
-                NewsClass oneFromTwenty=new NewsClass();
+            for (int i = 19; i >= 0; i--) {
+                NewsClass oneFromTwenty = new NewsClass();
                 JSONObject oneFromNews = news.getJSONObject(i);
                 oneFromTwenty.setTitle(oneFromNews.getString("title"));
                 oneFromTwenty.setDescription(oneFromNews.getString("description"));
                 oneFromTwenty.setSource(oneFromNews.getString("url"));
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ssz");
-                Date date =  df.parse(oneFromNews.getString("date"));
+                Date date = df.parse(oneFromNews.getString("date"));
                 oneFromTwenty.setDate(date);
                 NewsArray.add(oneFromTwenty);
             }
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return NewsArray;
     }
-    ArrayList<NewsClass> getTwentyNewsfromTechnology(){
+
+    ArrayList<NewsClass> getTwentyNewsfromTechnology() {
         ArrayList<NewsClass> NewsArray = new ArrayList<NewsClass>();
-        String link ="https://api.i-news.kz/news/search?query[cat_id]=10&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
+        String link = "https://api.i-news.kz/news/search?query[cat_id]=10&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
         String json = requestGET(link);
         try {
             JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray news = object.getJSONArray("news");
-            for(int i=19; i>=0; i--){
-                NewsClass oneFromTwenty=new NewsClass();
+            for (int i = 19; i >= 0; i--) {
+                NewsClass oneFromTwenty = new NewsClass();
                 JSONObject oneFromNews = news.getJSONObject(i);
                 oneFromTwenty.setTitle(oneFromNews.getString("title"));
                 oneFromTwenty.setDescription(oneFromNews.getString("description"));
                 oneFromTwenty.setSource(oneFromNews.getString("url"));
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ssz");
-                Date date =  df.parse(oneFromNews.getString("date"));
+                Date date = df.parse(oneFromNews.getString("date"));
                 oneFromTwenty.setDate(date);
                 NewsArray.add(oneFromTwenty);
             }
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return NewsArray;
     }
-    ArrayList<NewsClass> getTwentyNewsfromInternet(){
+
+    ArrayList<NewsClass> getTwentyNewsfromInternet() {
         ArrayList<NewsClass> NewsArray = new ArrayList<NewsClass>();
-        String link ="https://api.i-news.kz/news/search?query[cat_id]=11&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
+        String link = "https://api.i-news.kz/news/search?query[cat_id]=11&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
         String json = requestGET(link);
         try {
             JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray news = object.getJSONArray("news");
-            for(int i=19; i>=0; i--){
-                NewsClass oneFromTwenty=new NewsClass();
+            for (int i = 19; i >= 0; i--) {
+                NewsClass oneFromTwenty = new NewsClass();
                 JSONObject oneFromNews = news.getJSONObject(i);
                 oneFromTwenty.setTitle(oneFromNews.getString("title"));
                 oneFromTwenty.setDescription(oneFromNews.getString("description"));
                 oneFromTwenty.setSource(oneFromNews.getString("url"));
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ssz");
-                Date date =  df.parse(oneFromNews.getString("date"));
+                Date date = df.parse(oneFromNews.getString("date"));
                 oneFromTwenty.setDate(date);
                 NewsArray.add(oneFromTwenty);
             }
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return NewsArray;
     }
-    ArrayList<NewsClass> getTwentyNewsfromAuto(){
+
+    ArrayList<NewsClass> getTwentyNewsfromAuto() {
         ArrayList<NewsClass> NewsArray = new ArrayList<NewsClass>();
-        String link ="https://api.i-news.kz/news/search?query[cat_id]=12&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
+        String link = "https://api.i-news.kz/news/search?query[cat_id]=12&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
         String json = requestGET(link);
         try {
             JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray news = object.getJSONArray("news");
-            for(int i=19; i>=0; i--){
-                NewsClass oneFromTwenty=new NewsClass();
+            for (int i = 19; i >= 0; i--) {
+                NewsClass oneFromTwenty = new NewsClass();
                 JSONObject oneFromNews = news.getJSONObject(i);
                 oneFromTwenty.setTitle(oneFromNews.getString("title"));
                 oneFromTwenty.setDescription(oneFromNews.getString("description"));
                 oneFromTwenty.setSource(oneFromNews.getString("url"));
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ssz");
-                Date date =  df.parse(oneFromNews.getString("date"));
+                Date date = df.parse(oneFromNews.getString("date"));
                 oneFromTwenty.setDate(date);
                 NewsArray.add(oneFromTwenty);
             }
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return NewsArray;
     }
-    ArrayList<NewsClass> getTwentyNewsfromTourism(){
+
+    ArrayList<NewsClass> getTwentyNewsfromTourism() {
         ArrayList<NewsClass> NewsArray = new ArrayList<NewsClass>();
-        String link ="https://api.i-news.kz/news/search?query[cat_id]=13&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
+        String link = "https://api.i-news.kz/news/search?query[cat_id]=13&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
         String json = requestGET(link);
         try {
             JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray news = object.getJSONArray("news");
-            for(int i=19; i>=0; i--){
-                NewsClass oneFromTwenty=new NewsClass();
+            for (int i = 19; i >= 0; i--) {
+                NewsClass oneFromTwenty = new NewsClass();
                 JSONObject oneFromNews = news.getJSONObject(i);
                 oneFromTwenty.setTitle(oneFromNews.getString("title"));
                 oneFromTwenty.setDescription(oneFromNews.getString("description"));
                 oneFromTwenty.setSource(oneFromNews.getString("url"));
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ssz");
-                Date date =  df.parse(oneFromNews.getString("date"));
+                Date date = df.parse(oneFromNews.getString("date"));
                 oneFromTwenty.setDate(date);
                 NewsArray.add(oneFromTwenty);
             }
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return NewsArray;
     }
-    ArrayList<NewsClass> getTwentyNewsfromKazakh(){
+
+    ArrayList<NewsClass> getTwentyNewsfromKazakh() {
         ArrayList<NewsClass> NewsArray = new ArrayList<NewsClass>();
-        String link ="https://api.i-news.kz/news/search?query[cat_id]=14&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
+        String link = "https://api.i-news.kz/news/search?query[cat_id]=14&text=&limit=20&appId=Ozaa5nic5oeph7eethok&appKey=ushoh4ahpe8Aghahreel&version=1";
         String json = requestGET(link);
         try {
             JSONObject object = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray news = object.getJSONArray("news");
-            for(int i=19; i>=0; i--){
-                NewsClass oneFromTwenty=new NewsClass();
+            for (int i = 19; i >= 0; i--) {
+                NewsClass oneFromTwenty = new NewsClass();
                 JSONObject oneFromNews = news.getJSONObject(i);
                 oneFromTwenty.setTitle(oneFromNews.getString("title"));
                 oneFromTwenty.setDescription(oneFromNews.getString("description"));
                 oneFromTwenty.setSource(oneFromNews.getString("url"));
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ssz");
-                Date date =  df.parse(oneFromNews.getString("date"));
+                Date date = df.parse(oneFromNews.getString("date"));
                 oneFromTwenty.setDate(date);
                 NewsArray.add(oneFromTwenty);
             }
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
