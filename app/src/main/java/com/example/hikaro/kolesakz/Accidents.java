@@ -1,15 +1,20 @@
 package com.example.hikaro.kolesakz;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.Spanned;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -56,5 +61,17 @@ public class Accidents extends AppCompatActivity {
                 R.layout.list_item, taggedNews);
 
         listView.setAdapter(mAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
+                                    long id) {
+                String nonFixedLink= ((TextView) itemClicked).getText().toString();
+                int index=nonFixedLink.lastIndexOf("http");
+                String fixedLink=nonFixedLink.substring(index);
+                Uri address = Uri.parse(fixedLink);
+                Intent openLinkIntent = new Intent(Intent.ACTION_VIEW, address);
+                startActivity(openLinkIntent);
+            }
+        });
     }
 }

@@ -1,12 +1,21 @@
 package com.example.hikaro.kolesakz;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
@@ -14,6 +23,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Hikaro on 27.05.2016.
@@ -76,6 +87,18 @@ public class JsonGet {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+//        try {
+//            FileOutputStream fileOutputStream=new FileOutputStream("123.txt");
+//            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+//                    fileOutputStream.openFileOutput("123.txt", MODE_PRIVATE)));
+//            bw.write();
+//            bw.close();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
         return NewsArray;
     }
 
