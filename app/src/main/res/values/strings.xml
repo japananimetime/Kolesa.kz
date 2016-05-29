@@ -6,4 +6,17 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_politics">Politics</string>
+    <string name="title_activity_world">World</string>
+    <string name="title_activity_society">Society</string>
+    <string name="title_activity_economics">Economics</string>
+    <string name="title_activity_sports">Sports</string>
+    <string name="title_activity_accidents">Accidents</string>
+    <string name="title_activity_culture">Culture</string>
+    <string name="title_activity_science">Science</string>
+    <string name="title_activity_health">Health</string>
+    <string name="title_activity_technology">Technology</string>
+    <string name="title_activity_internet">Internet</string>
+    <string name="title_activity_auto">Auto</string>
+    <string name="title_activity_tourism">Tourism</string>
+    <string name="title_activity_kazakh">Kazakh</string>
 </resources>

@@ -101,8 +101,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, Politics.class);
             startActivity(intent);
         } else if (id == R.id.nav_world) {
-            JsonGet newsRequest = new JsonGet();
-            ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromWorld();
+            Intent intent = new Intent(MainActivity.this, World.class);
+            startActivity(intent);
         } else if (id == R.id.nav_society) {
             JsonGet newsRequest = new JsonGet();
             ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromSociety();

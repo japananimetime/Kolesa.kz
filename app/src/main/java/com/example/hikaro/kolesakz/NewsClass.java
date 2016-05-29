@@ -1,5 +1,7 @@
 package com.example.hikaro.kolesakz;
 
+import android.text.Html;
+
 import java.util.Date;
 
 /**
@@ -45,7 +47,7 @@ public class NewsClass {
 
     @Override
     public String toString() {
-        return  title + '\n' +
+        return title + '\n' +
                 date + '\n' +
                 description + '\n' +
                 ", Источник= '" + source;

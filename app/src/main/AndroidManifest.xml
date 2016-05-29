@@ -29,6 +29,58 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.hikaro.kolesakz.MainActivity" />
         </activity>
+        <activity
+            android:name=".World"
+            android:label="@string/title_activity_world"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Society"
+            android:label="@string/title_activity_society"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Economics"
+            android:label="@string/title_activity_economics"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Sports"
+            android:label="@string/title_activity_sports"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Accidents"
+            android:label="@string/title_activity_accidents"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Culture"
+            android:label="@string/title_activity_culture"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Science"
+            android:label="@string/title_activity_science"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Health"
+            android:label="@string/title_activity_health"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Technology"
+            android:label="@string/title_activity_technology"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Internet"
+            android:label="@string/title_activity_internet"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Auto"
+            android:label="@string/title_activity_auto"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Tourism"
+            android:label="@string/title_activity_tourism"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Kazakh"
+            android:label="@string/title_activity_kazakh"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,5 @@
 package com.example.hikaro.kolesakz;
 
-import android.app.ListActivity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,10 +11,10 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class Politics extends AppCompatActivity {
+public class World extends AppCompatActivity {
     ListView listView;
     JsonGet newsRequest = new JsonGet();
-    ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromPolitics();
+    ArrayList<NewsClass> news = newsRequest.getTwentyNewsfromWorld();
     private ArrayAdapter<String> mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
