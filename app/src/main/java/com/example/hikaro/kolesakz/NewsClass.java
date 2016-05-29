@@ -42,4 +42,12 @@ public class NewsClass {
     public void setSource(String source) {
         this.source = source;
     }
+
+    @Override
+    public String toString() {
+        return  title + '\n' +
+                date + '\n' +
+                description + '\n' +
+                ", Источник= '" + source;
+    }
 }
